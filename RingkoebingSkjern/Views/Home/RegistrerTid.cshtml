@@ -3,5 +3,23 @@
     ViewBag.Title = "RegistrerTid";
 }
 
-<h2>RegistrerTid</h2>
+<h2>Registrer Tid</h2>
 
+<p>Vælg laug: </p>
+
+<select class="form-control">
+    @foreach (var item in ViewBag.LaugListe)
+    {
+        <option>@item.Navn</option>
+    }
+</select>
+<br/>
+<button class="btn btn-primary">Start timeregistrering</button>
+<span>Fra kl. </span><span id="time"></span>
+
+<script>
+    var d = new Date(); // for now
+    var timer = d.getHours(); // => 9
+    var minutter = d.getMinutes(); // =>  30
+    document.getElementById('time').innerHTML = timer + ":" + minutter;
+</script>

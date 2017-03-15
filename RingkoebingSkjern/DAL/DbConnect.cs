@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using RingkoebingSkjern.Models;
 using System;
+using System.Collections.Generic;
 
 namespace RingkoebingSkjern.DAL
 {
@@ -131,12 +132,12 @@ namespace RingkoebingSkjern.DAL
         }
 
         //Select statement
-        public Login SelectUser(string brugernavn) //select user based on username
+        public List<Laug> SelectAllLaug()
         {
-            string query = "SELECT * FROM login WHERE brugernavn='" + brugernavn + "';";
+            string query = "SELECT * FROM Laug;";
 
             //Create a list to store the result
-            Login login = new Login();
+            List<Laug> laugListe = new List<Laug>();
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -149,8 +150,11 @@ namespace RingkoebingSkjern.DAL
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    login.Brugernavn = dataReader.GetString(0);
-                    login.Adgangskode = dataReader.GetString(1);
+                    laugListe.Add(new Laug {
+                        Id = Int32.Parse(dataReader.GetString(0)),
+                        Navn = dataReader.GetString(1),
+                        TotalTimer = Int32.Parse(dataReader.GetString(2))
+                    });
                 }
 
                 //close Data Reader
@@ -160,12 +164,41 @@ namespace RingkoebingSkjern.DAL
                 this.CloseConnection();
 
                 //return list to be displayed
+                return laugListe;
+            }
+            else
+                return laugListe;
+        }
+        public Login SelectUser(string brugernavn) //select user based on username
+        {
+            string query = "SELECT * FROM login WHERE brugernavn='" + brugernavn + "';";
+            
+            Login login = new Login();
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                
+                while (dataReader.Read())
+                {
+                    login.Brugernavn = dataReader.GetString(0);
+                    login.Adgangskode = dataReader.GetString(1);
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+                
                 return login;
             }
             else
-            {
                 return login;
-            }
         }
     }
 }
