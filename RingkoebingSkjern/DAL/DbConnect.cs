@@ -131,7 +131,7 @@ namespace RingkoebingSkjern.DAL
         }
 
         //Select statement
-        public Login SelectUser(string brugernavn)
+        public Login SelectUser(string brugernavn) //select user based on username
         {
             string query = "SELECT * FROM login WHERE brugernavn='" + brugernavn + "';";
 
@@ -165,32 +165,6 @@ namespace RingkoebingSkjern.DAL
             else
             {
                 return login;
-            }
-        }
-
-        //Count statement
-        public int Count()
-        {
-            string query = "COUNT FUNCTION";
-            int Count = -1;
-
-            //Open Connection
-            if (this.OpenConnection() == true)
-            {
-                //Create Mysql Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                //ExecuteScalar will return one value
-                Count = int.Parse(cmd.ExecuteScalar() + "");
-
-                //close Connection
-                this.CloseConnection();
-
-                return Count;
-            }
-            else
-            {
-                return Count;
             }
         }
     }
