@@ -5,7 +5,7 @@ namespace RingkoebingSkjern.Models
 {
     public class LoginRepository : ILoginRepository
     {
-        private readonly IList<Login> _loginList;
+        //private readonly IList<Login> _loginList;
         public Login GetLogin(string brugernavn)
         {
             DbConnect dbConnect = new DbConnect();
