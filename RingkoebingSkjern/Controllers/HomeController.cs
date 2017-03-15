@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using RingkoebingSkjern.DAL;
+﻿using RingkoebingSkjern.DAL;
 using RingkoebingSkjern.Models;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace RingkoebingSkjern.Controllers
@@ -20,10 +20,11 @@ namespace RingkoebingSkjern.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Frivillig")] //url auth
         public ActionResult RegistrerTid()
         {
             dbc = new DbConnect();
-            List<Laug> laugListe = dbc.SelectAllLaug();
+            List<Laug> laugListe = dbc.SelectAllLaug(); //hent laug fra DB
             ViewBag.LaugListe = laugListe;
             return View();
         }
