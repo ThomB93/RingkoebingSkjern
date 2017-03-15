@@ -182,6 +182,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Abstractions\IDbConnectionFactory.cs" />
+    <Compile Include="Models\Abstractions\MyDataAccessClass.cs" />
+    <Compile Include="Models\Abstractions\MySqlConnectionFactory.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ILoginRepository.cs" />

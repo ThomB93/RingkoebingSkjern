@@ -2,6 +2,8 @@
 using NUnit.Framework;
 using RingkoebingSkjern.Controllers;
 using RingkoebingSkjern.Models;
+using RingkoebingSkjern.Models.Abstractions;
+using System.Data;
 using System.Web.Mvc;
 using Login = RingkoebingSkjern.Models.Login;
 
@@ -35,6 +37,35 @@ namespace RingkoebingSkjern.Tests.Controllers
 
             Assert.AreEqual(expected.Brugernavn, actual.Brugernavn);
             Assert.AreEqual(expected.Adgangskode, actual.Adgangskode);
+        }
+        [Test]
+        public void TestInsert()
+        {
+            //Arrange
+            var commandMock = new Mock<IDbCommand>();
+            commandMock
+                .Setup(m => m.ExecuteNonQuery())
+                .Verifiable();
+
+            var connectionMock = new Mock<IDbConnection>();
+            connectionMock
+                .Setup(m => m.CreateCommand())
+                .Returns(commandMock.Object);
+
+            var connectionFactoryMock = new Mock<IDbConnectionFactory>();
+            connectionFactoryMock
+                .Setup(m => m.CreateConnection())
+                .Returns(connectionMock.Object);
+
+            var sut = new MyDataAccessClass(connectionFactoryMock.Object);
+            var brugernavn = "Frants";
+            var adgangskode = "123";
+
+            //Act
+            sut.Insert(brugernavn, adgangskode);
+
+            //Assert
+            commandMock.Verify();
         }
     }
 }
