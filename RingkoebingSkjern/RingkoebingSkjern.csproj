@@ -184,6 +184,11 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ILoginRepository.cs" />
+    <Compile Include="Models\ILoginService.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\LoginRepository.cs" />
+    <Compile Include="Models\LoginService.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

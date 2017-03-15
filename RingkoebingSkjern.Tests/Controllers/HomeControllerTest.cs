@@ -1,13 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Moq;
+using NUnit.Framework;
 using RingkoebingSkjern.Controllers;
+using RingkoebingSkjern.Models;
 using System.Web.Mvc;
+using Login = RingkoebingSkjern.Models.Login;
 
 namespace RingkoebingSkjern.Tests.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Test]
         public void Index()
         {
             // Arrange
@@ -18,6 +21,20 @@ namespace RingkoebingSkjern.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
+        }
+        [Test]
+        public void Get_Login_From_Database()
+        {
+            var expected = new Login {Brugernavn = "Frants", Adgangskode = "123"};
+            var loginRepositoryMock = new Mock<ILoginRepository>();
+            loginRepositoryMock
+                .Setup(gl => gl.GetLogin("Frants"))
+                .Returns(expected);
+            var loginService = new LoginService(loginRepositoryMock.Object);
+            var actual = loginService.GetLogin(expected.Brugernavn);
+
+            Assert.AreEqual(expected.Brugernavn, actual.Brugernavn);
+            Assert.AreEqual(expected.Adgangskode, actual.Adgangskode);
         }
     }
 }

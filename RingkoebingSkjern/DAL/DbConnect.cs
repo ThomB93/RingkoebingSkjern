@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using RingkoebingSkjern.Models;
 using System;
-using System.Collections.Generic;
 
 namespace RingkoebingSkjern.DAL
 {
@@ -131,15 +131,12 @@ namespace RingkoebingSkjern.DAL
         }
 
         //Select statement
-        public List<string>[] Select()
+        public Login SelectUser(string brugernavn)
         {
-            string query = "SELECT STATEMENT";
+            string query = "SELECT * FROM login WHERE brugernavn='" + brugernavn + "';";
 
             //Create a list to store the result
-            List<string>[] list = new List<string>[3];
-            list[0] = new List<string>();
-            list[1] = new List<string>();
-            list[2] = new List<string>();
+            Login login = new Login();
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -152,7 +149,8 @@ namespace RingkoebingSkjern.DAL
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-
+                    login.Brugernavn = dataReader.GetString(0);
+                    login.Adgangskode = dataReader.GetString(1);
                 }
 
                 //close Data Reader
@@ -162,11 +160,11 @@ namespace RingkoebingSkjern.DAL
                 this.CloseConnection();
 
                 //return list to be displayed
-                return list;
+                return login;
             }
             else
             {
-                return list;
+                return login;
             }
         }
 
