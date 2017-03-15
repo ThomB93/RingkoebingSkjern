@@ -1,5 +1,7 @@
-﻿using Microsoft.Owin;
+﻿using System.Diagnostics;
+using Microsoft.Owin;
 using Owin;
+using RingkoebingSkjern.DAL;
 
 [assembly: OwinStartupAttribute(typeof(RingkoebingSkjern.Startup))]
 namespace RingkoebingSkjern
@@ -8,6 +10,8 @@ namespace RingkoebingSkjern
     {
         public void Configuration(IAppBuilder app)
         {
+            
+
             ConfigureAuth(app);
         }
     }
