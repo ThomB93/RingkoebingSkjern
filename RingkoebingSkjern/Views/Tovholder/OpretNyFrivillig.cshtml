@@ -1,0 +1,41 @@
+﻿@using RingkoebingSkjern.Controllers
+@model RingkoebingSkjern.Models.Frivillig
+
+@{
+    ViewBag.Title = "OpretNyFrivillig";
+}
+
+<h2>Opret Ny Frivillig</h2>
+
+<div class="form-group">
+    <label for="fornavn">Fornavn:</label>
+    @Html.TextBoxFor(s => s.Fornavn, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    <label for="efternavn">Efternavn:</label>
+    @Html.TextBoxFor(s => s.Efternavn, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    <label for="telefon">Telefon:</label>
+    @Html.TextBoxFor(s => s.Telefon, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    <label for="email">Email:</label>
+    @Html.TextBoxFor(s => s.Email, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    <label for="adresse">Adresse:</label>
+    @Html.TextBoxFor(s => s.Adresse, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    <label for="postnr">Postnr:</label>
+    @Html.TextBoxFor(s => s.PostNr, new { @class = "form-control" })
+</div>
+<button type="submit" class="btn btn-primary" onclick="@{
+    ((TovholderController)this.ViewContext.Controller).IndsætData();
+}">Opret</button>
+
+
+
+
+

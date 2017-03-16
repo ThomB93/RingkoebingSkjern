@@ -23,14 +23,22 @@ namespace RingkoebingSkjern.Controllers
         [Authorize(Roles = "Frivillig")] //url auth
         public ActionResult RegistrerTid()
         {
-            dbc = new DbConnect();
-            List<Laug> laugListe = dbc.SelectAllLaug(); //hent laug fra DB
+            List<Laug> laugListe = GetAllLaug();
             ViewBag.LaugListe = laugListe;
             return View();
         }
         public ActionResult EfteregistrerTid()
         {
+            List<Laug> laugListe = GetAllLaug();
+            ViewBag.LaugListe = laugListe;
             return View();
+        }
+
+        private List<Laug> GetAllLaug()
+        {
+            dbc = new DbConnect();
+            List<Laug> laugListe = dbc.SelectAllLaug(); //hent laug fra DB
+            return laugListe;
         }
     }
 }

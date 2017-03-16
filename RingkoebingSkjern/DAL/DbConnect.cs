@@ -74,10 +74,32 @@ namespace RingkoebingSkjern.DAL
         }
 
         //Insert statement
-        public string Insert()
+        public string InsertUser(string brugernavn, string password)
         {
             string message = "";
-            string query = $"INSERT INTO login VALUES ('frants', '123');";
+            string query = $"INSERT INTO login VALUES ('"+ brugernavn + "', '" + password + "');";
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                message = "Established connection";
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                cmd.ExecuteNonQuery();
+                //Console.WriteLine("Insert query succesfully executed.");
+
+                //close connection
+                this.CloseConnection();
+            }
+            return message;
+        }
+        public string InsertFrivillig(string fornavn, string efternavn, string telefon,
+            string adresse, string email, int postnr)
+        {
+            string message = "";
+            string query = $"INSERT INTO frivillig (`fornavn`,`efternavn`,`telefon`,`email`,`adresse`,`post_nr`) VALUES" +
+                "('"+ fornavn + "','" + efternavn + "','" + telefon + "','" + email + "','" + adresse + "'," + postnr + ");";
             //open connection
             if (this.OpenConnection() == true)
             {
