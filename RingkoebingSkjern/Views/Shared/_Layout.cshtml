@@ -25,11 +25,11 @@
                     @if (User.IsInRole("Frivillig"))
                     {
                         <li>@Html.ActionLink("Registrer tid", "RegistrerTid", "Home")</li>
-                        <li>@Html.ActionLink("Efterregistrer tid", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Efterregistrer tid", "EfteregistrerTid", "Home")</li>
                     }
                     @if (User.IsInRole("Tovholder"))
                     {
-                        <li>@Html.ActionLink("Opret ny frivillig", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Opret ny frivillig", "OpretNyFrivillig", "Tovholder")</li>
                         <li>@Html.ActionLink("Se timeoversigt", "Index", "Home")</li>
                         <li>@Html.ActionLink("Udtræk data", "Index", "Home")</li>
                     }
