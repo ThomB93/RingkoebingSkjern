@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RingkoebingSkjern.DAL;
 using RingkoebingSkjern.Models;
 
 namespace RingkoebingSkjern.Controllers
@@ -10,14 +11,16 @@ namespace RingkoebingSkjern.Controllers
     public class TovholderController : Controller
     {
         // GET: Tovholder
-        public ActionResult OpretNyFrivillig()
+        /*public ActionResult OpretNyFrivillig()
         {
             return View(new Frivillig());
         }
 
-        public void IndsætData()
+        [HttpPost]
+        public void OpretNyFrivillig()
         {
+            DbConnect dbConnect = new DbConnect();
             
-        }
+        }*/
     }
 }
