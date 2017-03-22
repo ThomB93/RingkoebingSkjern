@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace RingkoebingSkjern.Models
+﻿namespace RingkoebingSkjern.Models
 {
     public class Frivillig
     {
@@ -13,6 +8,6 @@ namespace RingkoebingSkjern.Models
         public string Telefon { get; set; }
         public string Email { get; set; }
         public string Adresse { get; set; }
-        public int PostNr { get; set; }
+        public int? PostNr { get; set; } //nullable
     }
 }

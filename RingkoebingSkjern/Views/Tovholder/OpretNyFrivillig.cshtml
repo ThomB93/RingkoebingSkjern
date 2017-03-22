@@ -7,33 +7,41 @@
 
 <h2>Opret Ny Frivillig</h2>
 
-<div class="form-group">
-    <label for="fornavn">Fornavn:</label>
-    @Html.TextBoxFor(s => s.Fornavn, new { @class = "form-control" })
-</div>
-<div class="form-group">
-    <label for="efternavn">Efternavn:</label>
-    @Html.TextBoxFor(s => s.Efternavn, new { @class = "form-control" })
-</div>
-<div class="form-group">
-    <label for="telefon">Telefon:</label>
-    @Html.TextBoxFor(s => s.Telefon, new { @class = "form-control" })
-</div>
-<div class="form-group">
-    <label for="email">Email:</label>
-    @Html.TextBoxFor(s => s.Email, new { @class = "form-control" })
-</div>
-<div class="form-group">
-    <label for="adresse">Adresse:</label>
-    @Html.TextBoxFor(s => s.Adresse, new { @class = "form-control" })
-</div>
-<div class="form-group">
-    <label for="postnr">Postnr:</label>
-    @Html.TextBoxFor(s => s.PostNr, new { @class = "form-control" })
-</div>
-<button type="submit" class="btn btn-primary" onclick="@{
-    ((TovholderController)this.ViewContext.Controller).IndsætData();
-}">Opret</button>
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label id="fornavn">Fornavn:</label>
+        @Html.TextBoxFor(s => s.Fornavn, new { @class = "form-control", @placeholder = "Indtast fornavn..." })
+        @Html.ValidationMessageFor(m => m.Fornavn)
+    </div>
+    <div class="form-group">
+        <label id="efternavn">Efternavn:</label>
+        @Html.TextBoxFor(s => s.Efternavn, new { @class = "form-control", @placeholder = "Indtast efternavn..." })
+        @Html.ValidationMessageFor(m => m.Efternavn)
+    </div>
+    <div class="form-group">
+        <label id="telefon">Telefon:</label>
+        @Html.TextBoxFor(s => s.Telefon, new { @class = "form-control", @placeholder = "Indtast telefonnr..." })
+        @Html.ValidationMessageFor(m => m.Telefon)
+    </div>
+    <div class="form-group">
+        <label id="email">Email:</label>
+        @Html.TextBoxFor(s => s.Email, new { @class = "form-control", @placeholder = "Indtast email..." })
+    </div>
+    <div class="form-group">
+        <label id="adresse">Adresse:</label>
+        @Html.TextBoxFor(s => s.Adresse, new { @class = "form-control", @placeholder = "Indtast adresse..." })
+        @Html.ValidationMessageFor(m => m.Adresse)
+    </div>
+    <div class="form-group">
+        <label id="postnr">Postnr:</label>
+        @Html.TextBoxFor(s => s.PostNr, new { @class = "form-control", @placeholder = "Indtast postnr..." })
+        @Html.ValidationMessageFor(m => m.PostNr)
+    </div>
+
+    <input class="btn btn-primary"type="submit" value="Opret" />
+}
+
 
 
 

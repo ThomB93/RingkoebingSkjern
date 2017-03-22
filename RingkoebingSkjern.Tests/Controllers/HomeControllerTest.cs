@@ -44,15 +44,15 @@ namespace RingkoebingSkjern.Tests.Controllers
             //Arrange
             var commandMock = new Mock<IDbCommand>();
             commandMock
-                .Setup(m => m.ExecuteNonQuery())
+                .Setup(m => m.ExecuteNonQuery()) //verificér at en command bliver eksekveret
                 .Verifiable();
 
-            var connectionMock = new Mock<IDbConnection>();
+            var connectionMock = new Mock<IDbConnection>(); //verificér at en command bliver oprettet
             connectionMock
                 .Setup(m => m.CreateCommand())
                 .Returns(commandMock.Object);
 
-            var connectionFactoryMock = new Mock<IDbConnectionFactory>();
+            var connectionFactoryMock = new Mock<IDbConnectionFactory>(); //verificér at der kan oprettes forbindelse
             connectionFactoryMock
                 .Setup(m => m.CreateConnection())
                 .Returns(connectionMock.Object);

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "EfteregistrerTid";
+	ViewBag.Title = "EfteregistrerTid";
 }
 
 <h2>Efterregistrer Tid</h2>
@@ -8,10 +8,10 @@
 <p>Vælg laug: </p>
 
 <select class="form-control">
-    @foreach (var item in ViewBag.LaugListe)
-    {
-        <option>@item.Navn</option>
-    }
+	@foreach (var item in ViewBag.LaugListe)
+	{
+		<option>@item.Navn</option>
+	}
 </select>
 <br/>
 <input type="range" min="1" max="24" value="12" onchange="showValue(this.value)" />
