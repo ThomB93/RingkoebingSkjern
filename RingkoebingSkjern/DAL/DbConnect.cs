@@ -193,7 +193,7 @@ namespace RingkoebingSkjern.DAL
         }
         public Login SelectUser(string brugernavn) //select user based on username
         {
-            string query = "SELECT * FROM login WHERE brugernavn='" + brugernavn + "';";
+            string query = "SELECT * FROM frivillig_login WHERE brugernavn='" + brugernavn + "';";
             
             Login login = new Login();
 
@@ -207,8 +207,8 @@ namespace RingkoebingSkjern.DAL
                 
                 while (dataReader.Read())
                 {
-                    login.Brugernavn = dataReader.GetString(0);
-                    login.Adgangskode = dataReader.GetString(1);
+                    login.Brugernavn = dataReader.GetString(1);
+                    login.Adgangskode = dataReader.GetString(2);
                 }
 
                 //close Data Reader

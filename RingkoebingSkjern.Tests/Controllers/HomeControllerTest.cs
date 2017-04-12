@@ -12,7 +12,7 @@ namespace RingkoebingSkjern.Tests.Controllers
     public class HomeControllerTest
     {
         [Test]
-        public void Index()
+        public void Index() //Check om Index metode i HomeController returnerer korrekt View
         {
             // Arrange
             HomeController controller = new HomeController();
@@ -26,17 +26,13 @@ namespace RingkoebingSkjern.Tests.Controllers
         [Test]
         public void Get_Login_From_Database()
         {
-            IUnityContainer container = new UnityContainer();
-            DependencyInjectionContainer.RegisterElements(container);
-            ILoginRepository ilr = container.Resolve<ILoginRepository>();
-
             var expected = new Login {Brugernavn = "Frants", Adgangskode = "123"};
-            var loginRepositoryMock = new Mock<ILoginRepository>();
+            Mock<ILoginRepository> loginRepositoryMock = new Mock<ILoginRepository>(); //Opret mock af ILoginRepository
             loginRepositoryMock
                 .Setup(gl => gl.GetLogin("Frants"))
-                .Returns(expected);
-            var loginService = new LoginService(loginRepositoryMock.Object);
-            var actual = loginService.GetLogin(expected.Brugernavn);
+                .Returns(expected); //Hver gang GetLogin() kaldes returneres 'expected' objektet
+            var loginService = new LoginService(loginRepositoryMock.Object); //Objekt under test
+            var actual = loginService.GetLogin(expected.Brugernavn); //Vil returnere 'expected'
 
             Assert.AreEqual(expected.Brugernavn, actual.Brugernavn);
             Assert.AreEqual(expected.Adgangskode, actual.Adgangskode);

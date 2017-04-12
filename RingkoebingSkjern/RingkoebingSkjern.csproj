@@ -222,7 +222,6 @@
     <Compile Include="Models\Abstractions\MyDataAccessClass.cs" />
     <Compile Include="Models\Abstractions\MySqlConnectionFactory.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DependencyInjectionContainer.cs" />
     <Compile Include="Models\Frivillig.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ILoginRepository.cs" />
