@@ -21,6 +21,10 @@ namespace RingkoebingSkjern.Controllers
 
             return View();
         }
+        public ActionResult Tidsreg()
+        {
+            return View();
+        }
 
         [Authorize(Roles = "Frivillig")] //url auth
         public ActionResult RegistrerTid()
