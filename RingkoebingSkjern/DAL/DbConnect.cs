@@ -222,5 +222,8 @@ namespace RingkoebingSkjern.DAL
             else
                 return login;
         }
+        //Insert frivillig
+        //Insert tovholder
+        //
     }
 }
