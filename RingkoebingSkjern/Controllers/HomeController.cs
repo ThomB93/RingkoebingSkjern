@@ -11,8 +11,6 @@ namespace RingkoebingSkjern.Controllers
         
         public ActionResult Index()
         {
-            
-
             dbc = new DbConnect();
             //ViewBag.Message = dbc.Insert();
             Login login = dbc.SelectUser("Frants"); //test
