@@ -21,5 +21,6 @@
     var d = new Date(); // for now
     var timer = d.getHours(); // => 9
     var minutter = d.getMinutes(); // =>  30
+    minutter = minutter > 9 ? minutter : '0' + minutter; //tilføj 0 hvis under 10
     document.getElementById('time').innerHTML = timer + ":" + minutter;
 </script>
