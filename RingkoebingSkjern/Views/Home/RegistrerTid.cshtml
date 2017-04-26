@@ -2,17 +2,17 @@
 @{
     ViewBag.Title = "RegistrerTid";
 }
+<title>Registrér Tid</title>
 
-<h2>Registrer Tid</h2>
+<h2>Registrér Tid</h2>
 
 <p>Vælg laug: </p>
-
-@*<select class="form-control">
+<select class="form-control">
     @foreach (var item in ViewBag.LaugListe)
     {
-        <option id="valgtLaug">@item.Id</option>
+        <option id="valgtLaug">@item.Navn</option>
     }
-</select>*@
+</select>
 
 @{
     using (Html.BeginForm("RegistrerTid", "Home", FormMethod.Post))
@@ -21,7 +21,7 @@
         @Html.TextBoxFor(m => m.FrivilligId)
         <br />
         <label>Laug Id</label>
-        @Html.TextBoxFor(m => m.LaugId)
+        @Html.TextBoxFor(m => m.LaugId, new {@Value =  })
         <br />
         <label>Start Tid (YYYY-MM-DD HH:MM:SS)</label>
         @Html.TextBoxFor(m => m.StartTid, new { @Value = ViewBag.CurrentTime })

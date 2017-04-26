@@ -52,5 +52,17 @@ namespace RingkoebingSkjern.Controllers
             List<Laug> laugListe = dbc.SelectAllLaug(); //hent laug fra DB
             return laugListe;
         }
+        public int GetLaugId(string laugNavn)
+        {
+            List<Laug> laugListe = GetAllLaug();
+            foreach (var item in laugListe)
+            {
+                if(laugNavn == item.Navn)
+                {
+                    return item.Id;
+                }
+            }
+            return -1;
+        }
     }
 }
