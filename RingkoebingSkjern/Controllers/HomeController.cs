@@ -11,14 +11,16 @@ namespace RingkoebingSkjern.Controllers
         
         public ActionResult Index()
         {
-            
-
             dbc = new DbConnect();
             //ViewBag.Message = dbc.Insert();
             Login login = dbc.SelectUser("Frants"); //test
             ViewBag.Brugernavn = login.Brugernavn;
             ViewBag.Adgangskode = login.Adgangskode;
 
+            return View();
+        }
+        public ActionResult Tidsreg()
+        {
             return View();
         }
 
