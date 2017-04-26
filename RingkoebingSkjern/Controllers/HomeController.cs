@@ -1,5 +1,6 @@
 ﻿using RingkoebingSkjern.DAL;
 using RingkoebingSkjern.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -11,12 +12,6 @@ namespace RingkoebingSkjern.Controllers
         
         public ActionResult Index()
         {
-            dbc = new DbConnect();
-            //ViewBag.Message = dbc.Insert();
-            Login login = dbc.SelectUser("Frants"); //test
-            ViewBag.Brugernavn = login.Brugernavn;
-            ViewBag.Adgangskode = login.Adgangskode;
-
             return View();
         }
         public ActionResult Tidsreg()
@@ -29,8 +24,21 @@ namespace RingkoebingSkjern.Controllers
         {
             List<Laug> laugListe = GetAllLaug();
             ViewBag.LaugListe = laugListe;
+            ViewBag.CurrentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             return View();
         }
+        [HttpPost]
+        public ActionResult RegistrerTid(Tidsregistrering model)
+        {
+            if (ModelState.IsValid)
+            {
+                dbc = new DbConnect();
+                dbc.InsertTidsRegistrering(model.FrivilligId, model.LaugId, model.StartTid);
+            }
+            return View("Index");
+        }
+
+        [Authorize(Roles = "Frivillig")] //url auth
         public ActionResult EfteregistrerTid()
         {
             List<Laug> laugListe = GetAllLaug();

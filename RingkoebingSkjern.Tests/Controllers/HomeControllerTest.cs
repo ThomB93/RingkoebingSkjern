@@ -1,7 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using NUnit.Framework;
 using RingkoebingSkjern.Controllers;
 using RingkoebingSkjern.Models;
 using System.Web.Mvc;
@@ -25,7 +24,7 @@ namespace RingkoebingSkjern.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
-        [TestMethod]
+        /*[TestMethod]
         public void Get_Login_From_Database()
         {
             var expected = new Login {Brugernavn = "Frants", Adgangskode = "123"};
@@ -38,7 +37,7 @@ namespace RingkoebingSkjern.Tests.Controllers
 
             Assert.AreEqual(expected.Brugernavn, actual.Brugernavn);
            // Assert.AreEqual(expected.Adgangskode, actual.Adgangskode);
-        }
+        }*/
         /*[TestMethod]
         public void TestInsert()
         {

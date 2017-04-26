@@ -1,4 +1,4 @@
-﻿
+﻿@model RingkoebingSkjern.Models.Tidsregistrering
 @{
     ViewBag.Title = "RegistrerTid";
 }
@@ -7,15 +7,30 @@
 
 <p>Vælg laug: </p>
 
-<select class="form-control">
+@*<select class="form-control">
     @foreach (var item in ViewBag.LaugListe)
     {
-        <option>@item.Navn</option>
+        <option id="valgtLaug">@item.Id</option>
     }
-</select>
-<br/>
-<button class="btn btn-primary">Start timeregistrering</button>
-<span>Fra kl. </span><span id="time"></span>
+</select>*@
+
+@{
+    using (Html.BeginForm("RegistrerTid", "Home", FormMethod.Post))
+    {
+        <label>Frivillig Id</label>
+        @Html.TextBoxFor(m => m.FrivilligId)
+        <br />
+        <label>Laug Id</label>
+        @Html.TextBoxFor(m => m.LaugId)
+        <br />
+        <label>Start Tid (YYYY-MM-DD HH:MM:SS)</label>
+        @Html.TextBoxFor(m => m.StartTid, new { @Value = ViewBag.CurrentTime })
+        <br />
+        <input type="submit" value="Registrér" />
+
+    }
+}
+@*<span>Fra kl. </span><span id="time"></span>*@
 
 <script>
     var d = new Date(); // for now
@@ -23,4 +38,9 @@
     var minutter = d.getMinutes(); // =>  30
     minutter = minutter > 9 ? minutter : '0' + minutter; //tilføj 0 hvis under 10
     document.getElementById('time').innerHTML = timer + ":" + minutter;
+
+    function ReturnValgtLaug() {
+        var value = $('.dropdown option:selected').val();
+        
+    }
 </script>

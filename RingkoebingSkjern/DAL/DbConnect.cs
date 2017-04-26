@@ -74,7 +74,7 @@ namespace RingkoebingSkjern.DAL
         }
 
         //Insert statement
-        public string InsertUser(string brugernavn, string password)
+        /*public string InsertUser(string brugernavn, string password)
         {
             string message = "";
             string query = $"INSERT INTO login VALUES ('"+ brugernavn + "', '" + password + "');";
@@ -93,17 +93,15 @@ namespace RingkoebingSkjern.DAL
                 this.CloseConnection();
             }
             return message;
-        }
-        public string InsertFrivillig(string fornavn, string efternavn, string telefon,
+        }*/
+        public void InsertFrivillig(string fornavn, string efternavn, string telefon,
             string adresse, string email, int postnr)
         {
-            string message = "";
             string query = $"INSERT INTO frivillig (`fornavn`,`efternavn`,`telefon`,`email`,`adresse`,`post_nr`) VALUES" +
                 "('"+ fornavn + "','" + efternavn + "','" + telefon + "','" + email + "','" + adresse + "'," + postnr + ");";
             //open connection
             if (this.OpenConnection() == true)
-            {
-                message = "Established connection";
+            {      
                 //create command and assign the query and connection from the constructor
                 MySqlCommand cmd = new MySqlCommand(query, connection);
 
@@ -114,7 +112,6 @@ namespace RingkoebingSkjern.DAL
                 //close connection
                 this.CloseConnection();
             }
-            return message;
         }
 
         //Update statement
@@ -191,7 +188,7 @@ namespace RingkoebingSkjern.DAL
             else
                 return laugListe;
         }
-        public Login SelectUser(string brugernavn) //select user based on username
+        public Login SelectFrivilligUser(string brugernavn) //select user based on username
         {
             string query = "SELECT * FROM frivillig_login WHERE brugernavn='" + brugernavn + "';";
             
@@ -222,7 +219,24 @@ namespace RingkoebingSkjern.DAL
             else
                 return login;
         }
-        //Insert frivillig
+        public void InsertTidsRegistrering(int frivilligId, int laugId, string startTid)
+        {
+            string query = $"INSERT INTO frivillig_laug (`frivillig_id`, `laug_id`, `startTid`) VALUES" +
+                "(" + frivilligId + ", " + laugId + ",'" + startTid + "');";
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                cmd.ExecuteNonQuery();
+                //Console.WriteLine("Insert query succesfully executed.");
+
+                //close connection
+                this.CloseConnection();
+            }
+        }
         //Insert tovholder
         //
     }

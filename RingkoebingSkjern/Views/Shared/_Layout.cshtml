@@ -25,6 +25,7 @@
                     @if (User.IsInRole("Frivillig"))
                     {
                         <li>@Html.ActionLink("Registrer tid", "RegistrerTid", "Home")</li>
+                        <li>@Html.ActionLink("Registrer tid(Lasse)", "Tidsreg", "Home")</li>
                         <li>@Html.ActionLink("Efterregistrer tid", "EfteregistrerTid", "Home")</li>
                     }
                     @if (User.IsInRole("Tovholder"))
