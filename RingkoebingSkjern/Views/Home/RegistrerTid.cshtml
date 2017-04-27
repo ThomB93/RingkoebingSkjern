@@ -5,32 +5,36 @@
 <title>Registrér Tid</title>
 
 <h2>Registrér Tid</h2>
-
-<p>Vælg laug: </p>
-<select class="form-control">
-    @foreach (var item in ViewBag.LaugListe)
-    {
-        <option id="valgtLaug">@item.Navn</option>
-    }
-</select>
-
-@{
-    using (Html.BeginForm("RegistrerTid", "Home", FormMethod.Post))
-    {
-        <label>Frivillig Id</label>
-        @Html.TextBoxFor(m => m.FrivilligId)
-        <br />
-        <label>Laug Id</label>
-        @Html.TextBoxFor(m => m.LaugId, new {@Value =  })
-        <br />
-        <label>Start Tid (YYYY-MM-DD HH:MM:SS)</label>
-        @Html.TextBoxFor(m => m.StartTid, new { @Value = ViewBag.CurrentTime })
-        <br />
-        <input type="submit" value="Registrér" />
-
-    }
-}
-@*<span>Fra kl. </span><span id="time"></span>*@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <p>Vælg laug her: </p>
+            <select class="form-control">
+                @foreach (var item in ViewBag.LaugListe)
+                {
+                    <option id="valgtLaug">@item.Navn</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            @{
+                using (Html.BeginForm("RegistrerTid", "Home", FormMethod.Post))
+                {
+                    <label>Frivillig Id</label>
+                    @Html.TextBoxFor(m => m.FrivilligId, new { Class = "form-control" })
+                    <br />
+                    <label>Laug Id</label>
+                    @Html.TextBoxFor(m => m.LaugId, new { Class = "form-control" })
+                    <br />
+                    <label>Start Tid (ÅÅÅÅ-MM-DD TT:MM:SS)</label>
+                    @Html.TextBoxFor(m => m.StartTid, new { @Value = ViewBag.CurrentTime, @class = "form-control"})
+                    <br />
+                    <input type="submit" value="Registrér" class="btn btn-primary" />
+                }
+            }
+        </div>
+    </div>
+</div>
 
 <script>
     var d = new Date(); // for now

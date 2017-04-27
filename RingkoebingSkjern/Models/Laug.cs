@@ -7,7 +7,7 @@ namespace RingkoebingSkjern.Models
 {
     public class Laug
     {
-        public int Id { get; set; }
+        public int Id { get; set; } //primary key
         public string Navn { get; set; }
         public int TotalTimer { get; set; }
     }

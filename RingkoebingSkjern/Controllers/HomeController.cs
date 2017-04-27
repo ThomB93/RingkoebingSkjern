@@ -8,7 +8,7 @@ namespace RingkoebingSkjern.Controllers
 {
     public class HomeController : Controller
     {
-        private DbConnect dbc;
+        private DbConnect dbc; //instantiér for at oprette forbindelse til DB
         
         public ActionResult Index()
         {
@@ -24,9 +24,10 @@ namespace RingkoebingSkjern.Controllers
         {
             List<Laug> laugListe = GetAllLaug();
             ViewBag.LaugListe = laugListe;
-            ViewBag.CurrentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            ViewBag.CurrentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); //Send nuværende tid til view
             return View();
         }
+        //Indsæt tidsregistrering uden slut tid og antal timer
         [HttpPost]
         public ActionResult RegistrerTid(Tidsregistrering model)
         {
@@ -46,12 +47,14 @@ namespace RingkoebingSkjern.Controllers
             return View();
         }
 
+        //Hent laug fra DB, gem i liste
         private List<Laug> GetAllLaug()
         {
             dbc = new DbConnect();
             List<Laug> laugListe = dbc.SelectAllLaug(); //hent laug fra DB
             return laugListe;
         }
+        //Hent laug ID ud fra navn
         public int GetLaugId(string laugNavn)
         {
             List<Laug> laugListe = GetAllLaug();
@@ -62,7 +65,7 @@ namespace RingkoebingSkjern.Controllers
                     return item.Id;
                 }
             }
-            return -1;
+            return -1; //hvis ikke fundet
         }
     }
 }

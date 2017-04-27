@@ -9,9 +9,9 @@ namespace RingkoebingSkjern.Models
     public class Tidsregistrering
     {
         [Required]
-        public int FrivilligId { get; set; }
+        public int FrivilligId { get; set; } //foreign key
         [Required]
-        public int LaugId { get; set; }
+        public int LaugId { get; set; } //foreign key
         public string StartTid { get; set; }
         public string SlutTid { get; set; }
         public int AntalTimer { get; set; }
