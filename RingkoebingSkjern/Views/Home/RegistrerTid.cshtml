@@ -9,10 +9,10 @@
     <div class="row">
         <div class="col-md-6">
             <p>Vælg laug her: </p>
-            <select class="form-control">
+            <select id="laugListe" class="form-control">
                 @foreach (var item in ViewBag.LaugListe)
                 {
-                    <option id="valgtLaug">@item.Navn</option>
+                    <option value = @item.Id id="valgtLaug">@item.Navn</option>
                 }
             </select>
         </div>
@@ -21,10 +21,12 @@
                 using (Html.BeginForm("RegistrerTid", "Home", FormMethod.Post))
                 {
                     <label>Frivillig Id</label>
-                    @Html.TextBoxFor(m => m.FrivilligId, new { Class = "form-control" })
+                    @Html.TextBoxFor(m => m.FrivilligId, new { Class = "form-control", @Value = ViewBag.User })
+                    @Html.ValidationMessageFor(m => m.FrivilligId)
                     <br />
                     <label>Laug Id</label>
-                    @Html.TextBoxFor(m => m.LaugId, new { Class = "form-control" })
+                    @Html.TextBoxFor(m => m.LaugId, new { Class = "form-control", id = "laug" })
+                    @Html.ValidationMessageFor(m => m.LaugId)
                     <br />
                     <label>Start Tid (ÅÅÅÅ-MM-DD TT:MM:SS)</label>
                     @Html.TextBoxFor(m => m.StartTid, new { @Value = ViewBag.CurrentTime, @class = "form-control"})
@@ -36,15 +38,20 @@
     </div>
 </div>
 
-<script>
-    var d = new Date(); // for now
-    var timer = d.getHours(); // => 9
-    var minutter = d.getMinutes(); // =>  30
-    minutter = minutter > 9 ? minutter : '0' + minutter; //tilføj 0 hvis under 10
-    document.getElementById('time').innerHTML = timer + ":" + minutter;
+ @section Scripts{
+    <script>
+        //var d = new Date(); // for now
+        //var timer = d.getHours(); // => 9
+        //var minutter = d.getMinutes(); // =>  30
+        //minutter = minutter > 9 ? minutter : '0' + minutter; //tilføj 0 hvis under 10
+        //document.getElementById('time').innerHTML = timer + ":" + minutter;
 
-    function ReturnValgtLaug() {
-        var value = $('.dropdown option:selected').val();
-        
-    }
-</script>
+        $(document).ready(function () {
+            $(function () {
+                $('#laugListe').change(function () {
+                    $('#laug').val($(this).val()); //opdater laug ID
+                }).change(); // Trigger the event
+            });
+        });
+    </script>
+}    

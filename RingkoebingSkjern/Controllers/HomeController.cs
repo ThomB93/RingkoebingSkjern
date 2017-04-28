@@ -18,13 +18,22 @@ namespace RingkoebingSkjern.Controllers
         {
             return View();
         }
+        public ActionResult OpretBruger()
+        {
+            return View();
+        }
+        public ActionResult Login()
+        {
+            return View();
+        }
 
-        [Authorize(Roles = "Frivillig")] //url auth
+        //[Authorize(Roles = "Frivillig")] //url auth
         public ActionResult RegistrerTid()
         {
             List<Laug> laugListe = GetAllLaug();
             ViewBag.LaugListe = laugListe;
             ViewBag.CurrentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); //Send nuværende tid til view
+            ViewBag.User = User.Identity.Name; //Nuværende login
             return View();
         }
         //Indsæt tidsregistrering uden slut tid og antal timer
@@ -39,7 +48,7 @@ namespace RingkoebingSkjern.Controllers
             return View("Index");
         }
 
-        [Authorize(Roles = "Frivillig")] //url auth
+        //[Authorize(Roles = "Frivillig")] //url auth
         public ActionResult EfteregistrerTid()
         {
             List<Laug> laugListe = GetAllLaug();
@@ -55,7 +64,7 @@ namespace RingkoebingSkjern.Controllers
             return laugListe;
         }
         //Hent laug ID ud fra navn
-        public int GetLaugId(string laugNavn)
+        private int GetLaugId(string laugNavn)
         {
             List<Laug> laugListe = GetAllLaug();
             foreach (var item in laugListe)

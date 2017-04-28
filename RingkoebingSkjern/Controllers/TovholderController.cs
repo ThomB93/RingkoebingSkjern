@@ -9,7 +9,7 @@ namespace RingkoebingSkjern.Controllers
     {
         private DbConnect dbc;
         //[HttpGet]
-        [Authorize(Roles = "Tovholder")] //url auth
+        //[Authorize(Roles = "Tovholder")] //url auth
         public ActionResult OpretNyFrivillig()
         {
             return View(new Frivillig());

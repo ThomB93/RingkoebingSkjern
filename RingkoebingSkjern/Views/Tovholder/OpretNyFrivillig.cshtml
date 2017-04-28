@@ -9,6 +9,7 @@
 @{
     using (Html.BeginForm("OpretNyFrivillig", "Tovholder", FormMethod.Post))
     {
+        @Html.AntiForgeryToken()
         <div class="form-group">
             <label id="fornavn">Fornavn:</label>
             @Html.TextBoxFor(s => s.Fornavn, new { @class = "form-control", @placeholder = "Indtast fornavn..." }) @*Kræver korrekt data validation*@
