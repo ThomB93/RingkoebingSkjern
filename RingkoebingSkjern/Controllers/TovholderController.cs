@@ -24,7 +24,8 @@ namespace RingkoebingSkjern.Controllers
                 dbc.InsertFrivillig(model.Fornavn, model.Efternavn, model.Telefon,
                     model.Adresse, model.Email, Convert.ToInt32(model.PostNr));
             }
-            return View(new Frivillig());
+            TempData["successmessage"] = "Frivillig blev oprettet!";
+            return RedirectToAction("Index", "Home");
         }
     }
 }

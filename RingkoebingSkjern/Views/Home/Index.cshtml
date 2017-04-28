@@ -4,3 +4,14 @@
 @ViewBag.Message
 
 @*Tom forside*@
+@{
+    var message = TempData["successmessage"] ?? string.Empty;
+}
+
+@section Scripts {
+<script>
+var message = '@message';
+if(message)
+    alert(message);
+</script>
+    }
