@@ -17,7 +17,6 @@ namespace RingkoebingSkjern.Models
         [Display(Name = "Husk mig på denne computer")]
         public bool RememberMe { get; set; }
 
-        [Required]
         [Display(Name = "Rolle")]
         public string Rolle { get; set; }
 

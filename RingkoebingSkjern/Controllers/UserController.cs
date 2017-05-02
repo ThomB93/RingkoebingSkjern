@@ -31,11 +31,12 @@ namespace RingkoebingSkjern.Controllers
             {
                 if (user.OpretNyBruger(user.Brugernavn, user.Password, user.Rolle))
                 {
+                    TempData["successmessage"] = "Bruger blev oprettet!";
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    //ModelState.AddModelError("", "Kan ikke oprette bruger.");
+                    ModelState.AddModelError("", "Kunne ikke oprette bruger.");
                 }
             }
             return View();
@@ -46,14 +47,14 @@ namespace RingkoebingSkjern.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (user.IsValid(user.Brugernavn, user.Password))
+                if (user.IsValid(user.Brugernavn, user.Password)) //connects to DB
                 {
                     FormsAuthentication.SetAuthCookie(user.Brugernavn, user.RememberMe);
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    //ModelState.AddModelError("", "Forkert brugernavn eller password!");
+                    ModelState.AddModelError("", "Forkert brugernavn eller password!");
                 }
             }
             return View(user);
