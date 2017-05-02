@@ -4,7 +4,6 @@ using Moq;
 using RingkoebingSkjern.Controllers;
 using RingkoebingSkjern.Models;
 using System.Web.Mvc;
-using Login = RingkoebingSkjern.Models.Login;
 
 
 namespace RingkoebingSkjern.Tests.Controllers

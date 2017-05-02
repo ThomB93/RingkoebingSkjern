@@ -37,8 +37,16 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Opret Bruger", "OpretBruger", "Home")</li>
-                    <li>@Html.ActionLink("Log Ind", "Login", "Home")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        @Html.Encode(User.Identity.Name)
+                        <li>@Html.ActionLink("Log Ud", "Logout", "User")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Opret Bruger", "Register", "User")</li>
+                        <li>@Html.ActionLink("Log Ind", "Login", "User")</li>
+                    }
                 </ul>
                 @*@Html.Partial("_LoginPartial")*@
             </div>

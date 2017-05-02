@@ -1,0 +1,37 @@
+﻿@model RingkoebingSkjern.Models.User
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Kunne ikke oprette bruger. Tjek venligst dine oplysninger.");
+    <div>
+        <fieldset>
+            <legend>Opret Bruger</legend>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Brugernavn)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Brugernavn, new { @class = "form-control", @placeholder = "Indtast Brugernavn..." })
+                @Html.ValidationMessageFor(u => u.Brugernavn)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Indtast Password..." })
+                @Html.ValidationMessageFor(u => u.Password)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Rolle)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Rolle, new { @class = "form-control", @placeholder = "Fri / Tov" })
+                @Html.ValidationMessageFor(u => u.Rolle)
+            </div>
+            <br />
+            <input type="submit" value="Opret" class="btn btn-primary" />
+        </fieldset>
+    </div>
+}

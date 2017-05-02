@@ -214,6 +214,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TovholderController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\DbConnect.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -225,7 +226,7 @@
     <Compile Include="Models\Frivillig.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Laug.cs" />
-    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Tidsregistrering.cs" />
     <Compile Include="Models\Tovholder.cs" />
@@ -311,8 +312,8 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\Tidsreg.cshtml" />
-    <Content Include="Views\Home\OpretBruger.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

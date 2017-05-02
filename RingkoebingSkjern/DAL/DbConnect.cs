@@ -188,11 +188,9 @@ namespace RingkoebingSkjern.DAL
             else
                 return laugListe;
         }
-        public Login SelectFrivilligUser(string brugernavn) //select user based on username
+        public bool LoginIsValid(string brugernavn, string password) //return true hvis brugernavn + password findes i DB
         {
-            string query = "SELECT * FROM frivillig_login WHERE brugernavn='" + brugernavn + "';";
-            
-            Login login = new Login();
+            string query = "SELECT * FROM login WHERE brugernavn='" + brugernavn + "' AND Password = '" + password + "';";
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -201,23 +199,94 @@ namespace RingkoebingSkjern.DAL
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 //Create a data reader and Execute the command
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-                
-                while (dataReader.Read())
+                if (dataReader.HasRows)
                 {
-                    login.Brugernavn = dataReader.GetString(1);
-                    login.Adgangskode = dataReader.GetString(2);
+                    dataReader.Dispose();
+                    cmd.Dispose();
+                    this.CloseConnection();
+                    return true;
                 }
-
-                //close Data Reader
-                dataReader.Close();
-
-                //close Connection
-                this.CloseConnection();
-                
-                return login;
+                else
+                {
+                    dataReader.Dispose();
+                    cmd.Dispose();
+                    this.CloseConnection();
+                    return false;
+                }
             }
             else
-                return login;
+            {
+                return false;
+            }
+        }
+        public bool BrugernavnEksisterer(string brugernavn) //return true hvis brugernavn eksisterer i DB
+        {
+            string query = "SELECT * FROM login WHERE brugernavn='" + brugernavn + "';";
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    dataReader.Dispose();
+                    cmd.Dispose();
+                    this.CloseConnection();
+                    return true;
+                }
+                else
+                {
+                    dataReader.Dispose();
+                    cmd.Dispose();
+                    this.CloseConnection();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool OpretNyBruger(string brugernavn, string password, string rolle)
+        {
+            DbConnect dbc = new DbConnect();
+            if(!dbc.BrugernavnEksisterer(brugernavn) && (rolle == "Fri" || rolle == "fri"
+                || rolle == "Tov" || rolle == "tov"))//hvis bruger ikke eksisterer i DB og rolle er korrekt
+            {
+                string query = $"INSERT INTO login (`Brugernavn`, `Password`, `Rolle`) VALUES" +
+                "('" + brugernavn + "', '" + password + "','" + rolle + "');";
+                //open connection
+                if (this.OpenConnection() == true)
+                { 
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    //Execute command
+                    int affected = cmd.ExecuteNonQuery();
+                    if (affected != 0)
+                    {
+                        this.CloseConnection();
+                        return true;
+                    }
+                    else
+                    {
+                        this.CloseConnection();
+                        return false;
+                    }
+                }
+                else
+                {
+                    this.CloseConnection();
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            } 
         }
         public void InsertTidsRegistrering(int frivilligId, int laugId, string startTid)
         {
