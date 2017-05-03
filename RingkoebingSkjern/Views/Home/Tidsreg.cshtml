@@ -10,10 +10,22 @@
 <body>
     <div class=".col-md-8">
         <br />
-        <p class="text-center">Dette er tidsregstrering for frivillige hos RSM</p>
+        <p class="text-center">tidsregistrering for @ViewBag.user</p>
         <br />
+        
+        @if ()//er burgeren ikke igang med tidsreg
+        {
         <button class="btn btn-success btn-block btn-lg">Start tidsreg</button>
+        <button disabled class="btn btn-danger btn-block btn-lg">Slut tidsreg</button>
+        }
+
+        else // bruger har gang i tidsreg
+        {
+        <button disabled class="btn btn-success btn-block btn-lg">Start tidsreg</button>
         <button class="btn btn-danger btn-block btn-lg">Slut tidsreg</button>
+        }
+        
+
     </div>
 </body>
 </html>
